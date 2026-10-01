@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Admin — SCJA, Sohrawardi College Journalist Association</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#0a7d3e" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+<!-- Login screen -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <img class="crest-logo" src="/assets/logo.png" alt="Sohrawardi College Journalist Association logo" />
+    <h1>Admin panel</h1>
+    <p>Sohrawardi College Journalist Association</p>
+    <div class="login-error" id="loginError"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required autofocus />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Log in</button>
+    </form>
+  </div>
+</div>
+
+<!-- App shell -->
+<div class="app-shell" id="appShell">
+  <div class="topbar">
+    <div class="brand">
+      <img class="brand-icon" src="/assets/logo.png" alt="Sohrawardi College Journalist Association logo" />
+      <div class="brand-text">
+        <strong>SCJA Admin</strong>
+        <span>Sohrawardi College Journalist Association</span>
+      </div>
+    </div>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn">Log out</button>
+  </div>
+
+  <div class="dashboard">
+
+    <div class="dashboard-heading">
+      <h2>Member registrations</h2>
+      <p>Everyone who has registered for the Journalist Association.</p>
+    </div>
+
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-card">
+        <div class="value" id="statTotal">—</div>
+        <div class="label">Total members</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="value" id="statRecent">—</div>
+        <div class="label">New this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statDepartments">—</div>
+        <div class="label">Departments</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statTopInterest">—</div>
+        <div class="label">Top interest</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Members by department</h3>
+      <div class="chart-wrap">
+        <canvas id="deptChart"></canvas>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search by name, ID, email or phone" />
+      <select id="departmentFilter">
+        <option value="">All departments</option>
+      </select>
+      <select id="sortSelect">
+        <option value="created_at:desc">Newest first</option>
+        <option value="created_at:asc">Oldest first</option>
+        <option value="full_name:asc">Name (A–Z)</option>
+        <option value="full_name:desc">Name (Z–A)</option>
+        <option value="department:asc">Department</option>
+      </select>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-sm" id="selectPendingBtn">Select all pending</button>
+      <button class="btn btn-ghost btn-sm" id="exportBtn">Export CSV</button>
+    </div>
+
+    <div class="bulk-bar" id="bulkBar">
+      <span id="bulkCount">0 selected</span>
+      <div class="bulk-bar-actions">
+        <button class="btn btn-primary btn-sm" id="bulkConfirmBtn">Confirm selected</button>
+        <button class="btn btn-ghost btn-sm" id="bulkClearBtn">Clear</button>
+      </div>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+
+    <div class="table-panel">
+      <table class="members-table">
+        <thead>
+          <tr>
+            <th class="col-check"><input type="checkbox" id="selectAllCheckbox" title="Select all on this page" /></th>
+            <th>Name</th>
+            <th>Student ID</th>
+            <th>Department</th>
+            <th>Year / Session</th>
+            <th>Contact</th>
+            <th>Registered</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="membersTableBody">
+          <tr class="loading-row"><td colspan="9">Loading members…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- View member modal -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Member details</h3>
+      <button class="modal-close" data-close="viewModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div id="viewModalBody"></div>
+  </div>
+</div>
+
+<!-- Edit member modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Edit member</h3>
+      <button class="modal-close" data-close="editModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <form id="editForm">
+      <input type="hidden" id="edit_id" />
+      <div id="editModalBody"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close="editModal">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="saveEditBtn">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <h3>Remove member?</h3>
+      <button class="modal-close" data-close="deleteModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <p class="confirm-text">This will permanently delete <strong id="deleteMemberName">this member</strong>'s registration. This can't be undone.</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" data-close="deleteModal">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

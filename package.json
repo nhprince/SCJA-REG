@@ -1,0 +1,18 @@
+{
+  "name": "scja-registration",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Member registration & admin panel for Sohrawardi College Journalist Association (SCJA) — Cloudflare Pages + Functions + D1",
+  "scripts": {
+    "dev": "wrangler pages dev public --d1=DB",
+    "deploy": "wrangler pages deploy public",
+    "db:create": "wrangler d1 create scja_reg_db",
+    "db:init:remote": "wrangler d1 execute scja_reg_db --remote --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute scja_reg_db --local --file=./schema.sql",
+    "secret:admin-password": "wrangler pages secret put ADMIN_PASSWORD",
+    "secret:session-secret": "wrangler pages secret put SESSION_SECRET"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

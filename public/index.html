@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Join SCJA — Sohrawardi College Journalist Association</title>
+<meta name="description" content="Member registration for the Sohrawardi College Journalist Association (সোহরাওয়ার্দী কলেজ সাংবাদিক সমিতি), Govt. Shaheed Suhrawardy College." />
+<meta name="theme-color" content="#0a7d3e" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/form.css" />
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <img class="site-logo" src="/assets/logo.png" alt="Sohrawardi College Journalist Association logo" />
+    <div class="college-name">Govt. Shaheed Suhrawardy College</div>
+    <h1>SCJA Member Registration</h1>
+    <p class="bn-name" lang="bn">সোহরাওয়ার্দী কলেজ সাংবাদিক সমিতি</p>
+    <p class="tagline">Fill out the form below to join our community of writers, reporters, and storytellers.</p>
+  </header>
+
+  <div class="form-wrap">
+    <div class="form-card">
+
+      <div class="form-shell" id="formShell">
+
+        <div class="step-progress">
+          <div class="track" id="progressTrack"></div>
+          <div class="label-row">
+            <span class="step-title" id="stepTitle">Personal Information</span>
+            <span class="step-count" id="stepCount">Step 1 of 6</span>
+          </div>
+        </div>
+
+        <div class="submit-error" id="submitError"></div>
+
+        <form id="registrationForm" novalidate>
+
+          <!-- honeypot -->
+          <div class="visually-hidden" aria-hidden="true">
+            <label for="website_url">Leave this field empty</label>
+            <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <!-- Step 1: Personal -->
+          <section class="step active" data-step="1">
+            <div class="field" id="field_full_name">
+              <label for="full_name">Full name <span class="required">*</span></label>
+              <input type="text" id="full_name" name="full_name" placeholder="e.g. Md. Rakibul Islam" autocomplete="name" required />
+              <span class="error-text">Please enter your full name.</span>
+            </div>
+
+            <div class="field-row">
+              <div class="field" id="field_date_of_birth">
+                <label for="date_of_birth">Date of birth</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" />
+              </div>
+              <div class="field" id="field_blood_group">
+                <label for="blood_group">Blood group</label>
+                <select id="blood_group" name="blood_group">
+                  <option value="">Select blood group</option>
+                  <option>A+</option><option>A-</option>
+                  <option>B+</option><option>B-</option>
+                  <option>AB+</option><option>AB-</option>
+                  <option>O+</option><option>O-</option>
+                  <option>Don't know</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Profile Photo with Direct Camera + Browse -->
+            <div class="field" id="field_profile_photo">
+              <label>Profile photo</label>
+              <div class="upload-card">
+                <div class="upload-preview" id="profilePreview">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6"></path></svg>
+                </div>
+                <div class="upload-content">
+                  <strong id="profileUploadLabel">Upload or take a clear photo</strong>
+                  <span class="upload-subtext">JPG or PNG, resized automatically</span>
+                  <div class="upload-btn-group">
+                    <button type="button" class="btn-action btn-camera" onclick="openCamera('profile_photo')">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                      Take Photo
+                    </button>
+                    <button type="button" class="btn-action btn-browse" onclick="$('profile_photo').click()">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      Upload File
+                    </button>
+                  </div>
+                </div>
+                <input type="file" id="profile_photo" accept="image/*" class="visually-hidden" />
+              </div>
+              <span class="hint">Used for your member ID card and the association directory.</span>
+            </div>
+          </section>
+
+          <!-- Step 2: Academic (HSC & Honours) -->
+          <section class="step" data-step="2">
+            <div class="field" id="field_student_id">
+              <label for="student_id">Class Roll / Student ID <span class="required">*</span></label>
+              <input type="text" id="student_id" name="student_id" placeholder="e.g. 1204 or College Roll" required />
+              <span class="error-text">Please enter your class roll / student ID.</span>
+            </div>
+
+            <div class="field-row">
+              <div class="field" id="field_year">
+                <label for="year">Academic year <span class="required">*</span></label>
+                <select id="year" name="year" required>
+                  <option value="">Select year</option>
+                  <optgroup label="HSC">
+                    <option value="HSC 1st Year">HSC 1st Year (XI)</option>
+                    <option value="HSC 2nd Year">HSC 2nd Year (XII)</option>
+                    <option value="HSC Examinee">HSC Examinee</option>
+                  </optgroup>
+                  <optgroup label="Honours">
+                    <option value="Honours 1st Year">Honours 1st Year</option>
+                    <option value="Honours 2nd Year">Honours 2nd Year</option>
+                    <option value="Honours 3rd Year">Honours 3rd Year</option>
+                    <option value="Honours 4th Year">Honours 4th Year</option>
+                  </optgroup>
+                </select>
+                <span class="error-text">Please select your year.</span>
+              </div>
+              <div class="field" id="field_session">
+                <label for="session">Session <span class="required">*</span></label>
+                <input type="text" id="session" name="session" placeholder="e.g. 2024-2025" required />
+                <span class="error-text">Please enter your session.</span>
+              </div>
+            </div>
+
+            <div class="field" id="field_department">
+              <label for="department" id="departmentLabel">Group / Department <span class="required">*</span></label>
+              <select id="department" name="department" required>
+                <option value="">Select your academic year first</option>
+              </select>
+              <span class="error-text" id="departmentError">Please select your group or department.</span>
+              <span class="hint" id="departmentHint">HSC students choose a group; Honours students choose their department.</span>
+            </div>
+
+            <div class="field" id="field_department_other" style="display:none;">
+              <label for="department_other" id="departmentOtherLabel">Please specify <span class="required">*</span></label>
+              <input type="text" id="department_other" name="department_other" placeholder="Your group or department" />
+            </div>
+          </section>
+
+          <!-- Step 3: Contact & Guardian -->
+          <section class="step" data-step="3">
+            <div class="field" id="field_email">
+              <label for="email">Email address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+              <span class="error-text">Please enter a valid email address.</span>
+            </div>
+
+            <div class="field" id="field_phone">
+              <label for="phone">Phone number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="01XXXXXXXXX" autocomplete="tel" required />
+              <span class="error-text">Please enter your phone number.</span>
+            </div>
+
+            <div class="field" id="field_present_address">
+              <label for="present_address">Present address</label>
+              <textarea id="present_address" name="present_address" rows="2" placeholder="House, road, area, city"></textarea>
+            </div>
+
+            <label class="inline-check">
+              <input type="checkbox" id="sameAddress" />
+              Permanent address is the same as present address
+            </label>
+
+            <div class="field" id="field_permanent_address" style="margin-top:1.1rem;">
+              <label for="permanent_address">Permanent address</label>
+              <textarea id="permanent_address" name="permanent_address" rows="2" placeholder="House, road, area, district"></textarea>
+            </div>
+
+            <div class="field-row">
+              <div class="field" id="field_guardian_name">
+                <label for="guardian_name">Guardian's name</label>
+                <input type="text" id="guardian_name" name="guardian_name" placeholder="Father / Mother / Guardian" />
+              </div>
+              <div class="field" id="field_guardian_phone">
+                <label for="guardian_phone">Guardian's phone</label>
+                <input type="tel" id="guardian_phone" name="guardian_phone" placeholder="01XXXXXXXXX" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Step 4: Additional -->
+          <section class="step" data-step="4">
+            <div class="field" id="field_reason_to_join">
+              <label for="reason_to_join">Why do you want to join the Journalist Association?</label>
+              <textarea id="reason_to_join" name="reason_to_join" rows="3" placeholder="Tell us a little about your motivation"></textarea>
+            </div>
+
+            <div class="field" id="field_previous_experience">
+              <label for="previous_experience">Previous club or media experience</label>
+              <textarea id="previous_experience" name="previous_experience" rows="2" placeholder="Any relevant clubs, writing, photography, reporting or media work (optional)"></textarea>
+            </div>
+
+            <div class="field" id="field_interests">
+              <label>Areas of interest</label>
+              <div class="checkbox-grid">
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="News Reporting" /> News Reporting</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Article &amp; Feature Writing" /> Article &amp; Feature Writing</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Photojournalism" /> Photojournalism</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Videography &amp; Editing" /> Videography &amp; Editing</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Graphic Design" /> Graphic Design</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Social Media &amp; Content" /> Social Media &amp; Content</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Anchoring &amp; Presenting" /> Anchoring &amp; Presenting</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Investigative Journalism" /> Investigative Journalism</label>
+                <label class="checkbox-item"><input type="checkbox" name="interests" value="Event Management" /> Event Management</label>
+              </div>
+            </div>
+
+            <div class="field" id="field_social_link">
+              <label for="social_link">Facebook or LinkedIn profile</label>
+              <input type="url" id="social_link" name="social_link" placeholder="https://facebook.com/yourname" />
+            </div>
+          </section>
+
+          <!-- Step 5: Documents with Direct Camera + Browse -->
+          <section class="step" data-step="5">
+            <div class="field" id="field_id_document_photo">
+              <label>College ID card or birth certificate <span class="required">*</span></label>
+              <div class="upload-card">
+                <div class="upload-preview" id="idDocPreview">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M7 10h4M7 14h7"></path></svg>
+                </div>
+                <div class="upload-content">
+                  <strong id="idDocUploadLabel">Upload or capture your document</strong>
+                  <span class="upload-subtext">College ID card, or birth certificate</span>
+                  <div class="upload-btn-group">
+                    <button type="button" class="btn-action btn-camera" onclick="openCamera('id_document_photo')">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                      Take Photo
+                    </button>
+                    <button type="button" class="btn-action btn-browse" onclick="$('id_document_photo').click()">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      Upload File
+                    </button>
+                  </div>
+                </div>
+                <input type="file" id="id_document_photo" accept="image/*" class="visually-hidden" />
+              </div>
+              <span class="error-text">Please upload or capture your ID card or birth certificate photo.</span>
+              <span class="hint">Used only to verify your identity as a student of this college. Kept confidential.</span>
+            </div>
+          </section>
+
+          <!-- Step 6: Review -->
+          <section class="step" data-step="6" id="reviewStep">
+            <div id="reviewContent"></div>
+          </section>
+
+          <div class="step-actions" id="stepActions">
+            <button type="button" class="btn btn-ghost" id="backBtn">Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="success-screen" id="successScreen">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h2>You're registered!</h2>
+        <p>Thanks for joining the Sohrawardi College Journalist Association. We've received your information and an association representative will reach out to you soon.</p>
+        <p style="margin-top:1rem;"><a class="fb-link" href="https://www.facebook.com/profile.php?id=100087885429833" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg> Follow us on Facebook</a></p>
+        <div style="margin-top:1.6rem;">
+          <button type="button" class="btn btn-ghost" id="submitAnotherBtn">Submit another response</button>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="site-footer">
+      Sohrawardi College Journalist Association &middot; Member Registration
+      <div class="footer-social"><a class="fb-link" href="https://www.facebook.com/profile.php?id=100087885429833" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg> Facebook</a></div>
+    </footer>
+  </div>
+
+</div>
+
+<!-- In-Page Live Camera Viewfinder Modal -->
+<div class="camera-modal-overlay" id="cameraModal">
+  <div class="camera-modal">
+    <div class="camera-header">
+      <h3 id="cameraModalTitle">Take Photo</h3>
+      <button type="button" class="camera-close-btn" id="cameraCloseBtn" aria-label="Close camera">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="camera-viewfinder-wrap">
+      <video id="cameraVideo" autoplay playsinline muted></video>
+      <div class="camera-guide" id="cameraGuide"></div>
+      <canvas id="cameraCanvas" style="display:none;"></canvas>
+    </div>
+    <div class="camera-controls">
+      <button type="button" class="btn-camera-ctrl btn-camera-switch" id="cameraSwitchBtn" title="Switch front/back camera">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0-4.418-3.582-8-8-8s-8 3.582-8 8c0 1.954.702 3.743 1.87 5.13L4 17h6v-6L8.13 12.87A5.98 5.98 0 0 1 6 10c0-3.314 2.686-6 6-6s6 2.686 6 6c0 1.456-.519 2.791-1.385 3.834L18.06 15.28A7.963 7.963 0 0 0 20 10zM14 17l1.87-1.87A5.98 5.98 0 0 1 18 10h2c0 4.418-3.582-8-8 8s-8-3.582-8-8h2c0 3.314 2.686 6 6 6c1.456 0 2.791-.519 3.834-1.385L16 19v-6h6l-2 2z"/></svg>
+      </button>
+      <button type="button" class="btn-camera-shutter" id="cameraCaptureBtn" aria-label="Capture photo">
+        <span class="shutter-inner"></span>
+      </button>
+      <div style="width:40px;"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/form.js"></script>
+</body>
+</html>
